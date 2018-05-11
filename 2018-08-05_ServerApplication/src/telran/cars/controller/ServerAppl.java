@@ -13,7 +13,7 @@ import telran.cars.dto.*;
 
 @SpringBootApplication
 @RestController
-public class CarsRestAppl {
+public class ServerAppl {
 	IRentCompany company = RentCompanyEmbedded.restoreFromFile("cars.data");
 
 	@PutMapping(value = CarsApiConstants.SAVE)
@@ -103,7 +103,7 @@ public class CarsRestAppl {
 	}
 	
 	public static void main(String[] args) {
-		SpringApplication.run(CarsRestAppl.class, args);
+		SpringApplication.run(ServerAppl.class, args);
 
 	}
 
