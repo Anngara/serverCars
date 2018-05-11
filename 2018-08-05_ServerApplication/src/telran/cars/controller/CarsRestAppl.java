@@ -16,15 +16,19 @@ import telran.cars.dto.*;
 public class CarsRestAppl {
 	IRentCompany company = RentCompanyEmbedded.restoreFromFile("cars.data");
 
-	@PostMapping(value = CarsApiConstants.SAVE)
-	Boolean save() {
+	@PutMapping(value = CarsApiConstants.SAVE)
+	void save() {
 		company.save();
-		return Boolean.TRUE;
 	}
 
 	@PostMapping(value = CarsApiConstants.ADD_CAR_MODEL)
 	CarsReturnCode addModel(@RequestBody Model model) {
 		return company.addModel(model);
+	}
+	
+	@PostMapping(value = CarsApiConstants.ADD_CAR)
+	CarsReturnCode addCar(@RequestBody Car car) {
+		return company.addCar(car);
 	}
 
 	@PostMapping(value = CarsApiConstants.ADD_DRIVER)
@@ -78,7 +82,7 @@ public class CarsRestAppl {
 		return company.getDriverCars(licenseId);
 	}
 
-	@GetMapping(value = CarsApiConstants.GET_ALL_CARS)
+	@RequestMapping(value = CarsApiConstants.GET_ALL_CARS)
 	List <Car> getAllCars() {
 		return company.getAllCars().collect(Collectors.toList());
 	}
