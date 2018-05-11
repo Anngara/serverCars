@@ -1,7 +1,7 @@
 package telran.cars.controller;
 
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -79,18 +79,18 @@ public class CarsRestAppl {
 	}
 
 	@GetMapping(value = CarsApiConstants.GET_ALL_CARS)
-	Stream<Car> getAllCars() {
-		return company.getAllCars();
+	List <Car> getAllCars() {
+		return company.getAllCars().collect(Collectors.toList());
 	}
 	
 	@GetMapping(value = CarsApiConstants.GET_ALL_DRIVERS)
-	Stream<Driver> getAllDrivers() {
-		return company.getAllDrivers();
+	List<Driver> getAllDrivers() {
+		return company.getAllDrivers().collect(Collectors.toList());
 	}
 
 	@GetMapping(value = CarsApiConstants.GET_ALL_RECORDS)
-	Stream<RentRecord> getAllRecords() {
-		return company.getAllRecords();
+	List<RentRecord> getAllRecords() {
+		return company.getAllRecords().collect(Collectors.toList());
 	}
 	
 	@GetMapping(value = CarsApiConstants.GET_ALL_MODELS)
